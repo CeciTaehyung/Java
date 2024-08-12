@@ -1,0 +1,30 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://wwwultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layouts/_mainLayout">
+
+<div layout:fragment="content">
+<h1>Editar grupos</h1>
+<form th:action="@{/Grupos/save}" th:object="${grupo}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" th:field="*{nombre}" id="nombre" placeholder="Escriba el nombre del grupo" required>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="descripcion">Descripcion</label>
+                <textarea class="form-control" th:field="*{descripcion}" id="descripcion"></textarea>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <button type="submit">Guardar cambios</button>
+    <a th:href="@{/Grupos}">Regresar</a>
+</form>
+</div>
