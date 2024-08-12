@@ -1,10 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://wwwultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layouts/_mainLayout">
 
-</body>
-</html>
+<div layout:fragment="content">
+    <h1>Editar docentes</h1>
+    <form th:action="@{/Docentes/save}" th:object="${docentes}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" th:field="*{nombre}" id="nombre" placeholder="Escriba el nombre del grupo" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="apellido">Apellido</label>
+                    <textarea class="form-control" th:field="*{apellido}" id="apellido"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <textarea class="form-control" th:field="*{email}" id="email"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="apellido">Apellido</label>
+                    <textarea class="form-control" th:field="*{apellido}" id="apellido"></textarea>
+                </div>
+            </div>
+        </div><div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="telefono">Telefono</label>
+                <textarea class="form-control" th:field="*{telefono}" id="telefono"></textarea>
+            </div>
+        </div>
+    </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="apellido">Escue</label>
+                    <textarea class="form-control" th:field="*{apellido}" id="apellido"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <button type="submit">Guardar cambios</button>
+        <a th:href="@{/Grupos}">Regresar</a>
+    </form>
+</div>
