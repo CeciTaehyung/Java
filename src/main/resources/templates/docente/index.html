@@ -21,6 +21,8 @@
             <th>Apellido</th>
             <th>Email</th>
             <th>Telefono</th>
+            <th>Escuela</th>
+
 
         </tr>
         </thead>
@@ -31,6 +33,7 @@
             <td th:text="${item.apellido}"></td>
             <td th:text="${item.email}"></td>
             <td th:text="${item.telefono}"></td>
+            <td th:text="${item.escuela}"></td>
             <td>
                 <a th:href="@{/Docentes/details/{id} (id = ${item.id}) }" class="btn btn-outline-secondary"> Ver</a>
                 <a th:href="@{/Docentes/edit/{id} (id =${item.id}) }" class="btn btn-outline-info">Editar</a>

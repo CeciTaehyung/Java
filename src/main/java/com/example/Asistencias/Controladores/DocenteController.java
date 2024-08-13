@@ -3,6 +3,7 @@ package com.example.Asistencias.Controladores;
 
 import com.example.Asistencias.Entidades.Docente;
 
+import com.example.Asistencias.Entidades.Grupo;
 import com.example.Asistencias.Servicios.Interfaces.IDocenteServices;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,4 +83,5 @@ public class DocenteController {
         attributes.addFlashAttribute("msg","docente eliminado correctamente" );
         return "redirect:/Docentes";
     }
+
 }

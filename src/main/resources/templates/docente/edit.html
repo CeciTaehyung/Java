@@ -32,13 +32,6 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="apellido">Apellido</label>
-                    <textarea class="form-control" th:field="*{apellido}" id="apellido"></textarea>
-                </div>
-            </div>
-        </div><div class="row">
         <div class="col-md-6">
             <div class="form-group">
                 <label for="telefono">Telefono</label>
@@ -49,13 +42,13 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="apellido">Escue</label>
-                    <textarea class="form-control" th:field="*{apellido}" id="apellido"></textarea>
+                    <label for="escuela">Escuela</label>
+                    <textarea class="form-control" th:field="*{escuela}" id="escuela"></textarea>
                 </div>
             </div>
         </div>
         <hr>
         <button type="submit">Guardar cambios</button>
-        <a th:href="@{/Grupos}">Regresar</a>
+        <a th:href="@{/Docentes}">Regresar</a>
     </form>
 </div>
