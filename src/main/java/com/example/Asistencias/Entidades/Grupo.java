@@ -4,6 +4,9 @@ import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name =  "grupos")
 
@@ -18,6 +21,7 @@ public class Grupo {
 
     @Nullable
     private String descripcion;
+    private Set<Docente>docentes = new HashSet<>();
 
     public Integer getId() {
         return id;

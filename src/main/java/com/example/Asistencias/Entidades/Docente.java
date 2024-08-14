@@ -3,6 +3,10 @@ package com.example.Asistencias.Entidades;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import org.hibernate.validator.constraints.NotBlank;
+
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "docentes")
 public class Docente {
@@ -29,6 +33,24 @@ public class Docente {
 
     public @NotBlank(message = "Ingresar el nombre del docente") String getNombre() {
         return nombre;
+    }
+
+    @ManyToMany
+    @JoinTable(
+            name = "docente_grupos",
+            joinColumns = @JoinColumn(name = "docente id"),
+            inverseJoinColumns = @JoinColumn(name = "grupo_id")
+
+    )
+
+    private Set<Grupo> grupos = new HashSet<>();
+
+    public Set<Grupo> getGrupos() {
+        return grupos;
+    }
+
+    public void setGrupos(Set<Grupo> grupos) {
+        this.grupos = grupos;
     }
 
     public void setNombre(@NotBlank(message = "Ingresar el nombre del docente") String nombre) {
