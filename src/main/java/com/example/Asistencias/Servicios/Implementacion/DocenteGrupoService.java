@@ -2,9 +2,7 @@ package com.example.Asistencias.Servicios.Implementacion;
 
 import com.example.Asistencias.Entidades.DocenteGrupo;
 import com.example.Asistencias.Repositorio.IDocenteGrupo;
-import com.example.Asistencias.Repositorio.IDocenteRepository;
 import com.example.Asistencias.Servicios.Interfaces.IDocenteGrupoService;
-import com.example.Asistencias.Servicios.Interfaces.IDocenteServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,7 +19,7 @@ public class DocenteGrupoService  implements IDocenteGrupoService {
 
     @Override
     public Page<DocenteGrupo> BuscarTodosPaginador(Pageable pageable) {
-        return docenteGrupoRepository.findByOrderByTeacherDesc(pageable);
+        return docenteGrupoRepository.findByOrderByDocenteDesc(pageable);
     }
 
     @Override
@@ -43,5 +41,10 @@ public class DocenteGrupoService  implements IDocenteGrupoService {
     public void EliminarPorId(Integer id) {
 
         docenteGrupoRepository.findById(id);
+    }
+
+    @Override
+    public Page<DocenteGrupo> BuscarTodosPaginador() {
+        return null;
     }
 }

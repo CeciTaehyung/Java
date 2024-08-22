@@ -2,10 +2,7 @@ package com.example.Asistencias.Controladores;
 
 
 import com.example.Asistencias.Entidades.Docente;
-
-import com.example.Asistencias.Entidades.Grupo;
 import com.example.Asistencias.Servicios.Interfaces.IDocenteServices;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -30,58 +28,64 @@ public class DocenteController {
     @GetMapping
     public String index(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
         int currentPage = page.orElse(1) - 1;
-        int pageSize = size.orElse(10);
+        int pageSize = size.orElse(5);
         Pageable pageable = PageRequest.of(currentPage, pageSize);
-        Page<Docente> docente = docenteServices.BuscarTodosPaginador(pageable);
-        model.addAttribute("docente", docente);
+        Page<Docente> docentes = docenteServices.BuscarTodosPaginador(pageable);
+        model.addAttribute("docentes", docentes);
 
-        int totalPage = docente.getTotalPages();
+        int totalPage = docentes.getTotalPages();
         if (totalPage > 0) {
-            List<Integer> pageNumber = IntStream.rangeClosed(1, totalPage)
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPage)
                     .boxed()
                     .collect(Collectors.toList());
-            model.addAttribute("pageNumber", pageNumber);
+
+            model.addAttribute("pageNumbers", pageNumbers);
         }
         return "docente/index";
     }
+
     @GetMapping("/create")
-    public String create(Docente docente){
+    public String create(Docente docente) {
         return "docente/create";
     }
-    @PostMapping ("/save")
-    public String save(Docente docente, BindingResult result, Model model, RedirectAttributes attributes){
-        if (result.hasErrors()){
+
+    @PostMapping("/save")
+    public String save(Docente docente, BindingResult result, Model model, RedirectAttributes attributes) {
+        if (result.hasErrors()) {
             model.addAttribute(docente);
-            attributes.addFlashAttribute("error", "no se pudo guardar debido a un error.");
+            attributes.addFlashAttribute("error", "No se pudo guardar el docente debido a un error");
+            return "docente/create";
         }
         docenteServices.CrearOeditar(docente);
-        attributes.addFlashAttribute("msg", "Docente creado correcamente");
-        return "redirect:/Docentes";
+        attributes.addFlashAttribute("msg", "Docente creado correctamente");
+        return "redirect:/docentes";
     }
 
     @GetMapping("/details/{id}")
-    public String details(@PathVariable("id") Integer id, Model model){
+    public String details(@PathVariable("id") Integer id, Model model) {
         Docente docente = docenteServices.BuscarPorId(id).get();
         model.addAttribute("docente", docente);
-        return  "docente/details";
+        return "docente/details";
     }
+
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable("id") Integer id, Model model){
+    public String edit(@PathVariable("id") Integer id, Model model) {
         Docente docente = docenteServices.BuscarPorId(id).get();
         model.addAttribute("docente", docente);
         return "docente/edit";
     }
+
     @GetMapping("/remove/{id}")
-    public String remove(@PathVariable("id") Integer id, Model model){
+    public String remove(@PathVariable("id") Integer id, Model model) {
         Docente docente = docenteServices.BuscarPorId(id).get();
         model.addAttribute("docente", docente);
         return "docente/delete";
     }
-    @PostMapping("/delete")
-    public String delete(Docente docente, RedirectAttributes attributes){
-        docenteServices.EliminarPorId(docente.getId());
-        attributes.addFlashAttribute("msg","docente eliminado correctamente" );
-        return "redirect:/Docentes";
-    }
 
+    @PostMapping("/delete")
+    public String delete(Docente docente, RedirectAttributes attributes) {
+        docenteServices.EliminarPorId(docente.getId());
+        attributes.addFlashAttribute("msg", "Docente eliminado correctamente");
+        return "redirect:/docentes";
+    }
 }

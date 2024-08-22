@@ -15,4 +15,7 @@ public interface IDocenteGrupoService {
     Optional<DocenteGrupo> BuscarPorId(Integer id);
     DocenteGrupo CrearOeditar(DocenteGrupo docenteGrupo);
     void EliminarPorId(Integer id);
+
+
+    Page<DocenteGrupo> BuscarTodosPaginador();
 }

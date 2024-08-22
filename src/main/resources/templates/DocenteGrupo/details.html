@@ -1,0 +1,28 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://wwwultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layouts/_mainLayout">
+
+<div layout:fragment ="content">
+    <h1>Detalles de docente</h1>
+    <hr/>
+    <dl class="row">
+        <dt class="col-sm-2">ID</dt>
+        <dd class="col-sm-10" th:text="${docenteGrupo.id}"></dd>
+
+        <dt class="col-sm-2">Docente</dt>
+        <dd class="col-sm-10" th:text="${docenteGrupo.docente}"></dd>
+
+        <dt class="col-sm-2">Grupo</dt>
+        <dd class="col-sm-10" th:text="${docenteGrupo.grupo}"></dd>
+
+        <dt class="col-sm-2">Año</dt>
+        <dd class="col-sm-10" th:text="${docenteGrupo.anio}"></dd>
+
+        <dt class="col-sm-2">Ciclo</dt>
+        <dd class="col-sm-10" th:text="${docenteGrupo.ciclo}"></dd>
+
+    </dl>
+    <a th:href="@{/docenteGrpos/edit/{id} (id= ${docente.id}) }" class="btn btn-outline-info">Editar</a>
+    <a th_href="@{/docenteGrupos}">Regresar</a>
+</div>

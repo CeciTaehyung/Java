@@ -10,15 +10,15 @@ public class DocenteGrupo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "docente_id")
     private Docente docente;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "grupo_id")
     private Grupo grupo;
 
-    private int año;
+    private int anio;
     private String ciclo;
 
     public Integer getId() {
@@ -45,12 +45,12 @@ public class DocenteGrupo {
         this.grupo = grupo;
     }
 
-    public int getAño() {
-        return año;
+    public int getAnio() {
+        return anio;
     }
 
-    public void setAño(int año) {
-        this.año = año;
+    public void setAnio(int anio) {
+        this.anio = anio;
     }
 
     public String getCiclo() {
